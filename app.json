@@ -1,3 +1,6 @@
 {
-    "name":"secure-brushlands-78835"
+    "name":"secure-brushlands-78835",
+    "scripts": {
+        "heroku-postbuild": "bin/bridgetown deploy"
+    }
 }
