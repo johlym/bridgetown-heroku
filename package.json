@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "webpack-build": "webpack --mode production",
-    "webpack-dev": "webpack --mode development -w"
+    "webpack-dev": "webpack --mode development -w",
+    "heroku-postbuild": "bin/bridgetown deploy"
   },
   "devDependencies": {
     "css-loader": "^4.3.0",
