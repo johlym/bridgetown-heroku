@@ -7,9 +7,10 @@ port ENV.fetch("PORT") { 4000 }
 # You can adjust the number of workers (separate processes) and threads
 # (per process) based on your production system
 #
-if ENV["BRIDGETOWN_ENV"] == "production"
-  workers ENV.fetch("BRIDGETOWN_CONCURRENCY") { 4 }
-end
+
+workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+
+environment ENV['RACK_ENV'] || 'development'
 
 max_threads_count = ENV.fetch("BRIDGETOWN_MAX_THREADS") { 5 }
 min_threads_count = ENV.fetch("BRIDGETOWN_MIN_THREADS") { max_threads_count }
