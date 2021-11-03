@@ -1,1 +1,1 @@
-web: bridgetown start
+web: bundle exec puma -t 8:32

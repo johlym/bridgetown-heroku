@@ -1,5 +1,6 @@
 # This file is used by Rack-based servers during the Bridgetown boot process.
 
+require "bridgetown"
 require "bridgetown-core/rack/boot"
 
 ENV["BRIDGETOWN_ENV"] = 'development'
