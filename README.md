@@ -2,6 +2,8 @@
 
 Welcome to your new Bridgetown website! You can update this README file to provide additional context and setup information for yourself or other contributors.
 
+**NOTE: This is an alpha of Bridgetown 1.0, not the 0.x branch of the project.**
+
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
