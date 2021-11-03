@@ -9,6 +9,7 @@ Welcome to your new Bridgetown website! You can update this README file to provi
 - [Development](#development)
 - [Commands](#commands)
 - [Deployment](#deployment)
+- [Running on Heroku](#running-on-heroku)
 - [Contributing](#contributing)
 
 ## Prerequisites
@@ -57,6 +58,22 @@ bin/bridgetown console
 You can deploy Bridgetown sites on "Jamstack" hosts (Netlify, Vercel, Render, etc.) or virtually any tranditional web server by simply building and copying the output folder to your HTML root.
 
 > Read the [Bridgetown Deployment Documentation](https://www.bridgetownrb.com/docs/deployment) for more information.
+
+### Running on Heroku
+
+Skipping over the default Heroku actions...
+
+Ensure both `heroku/ruby` and `heroku/nodejs` are configured buildpacks. In that order, too. The latter is required to pick up `heroku-postbuild` as a script in `package.json`. This will runn `bridgetown deploy` and ensure all the static-y stuff is ready to go and added to the slug. Without it, Webpack cannot find the manifest file, because `.bridgetown-webpack` is in `.gitignore`; it is single-build-specific.
+
+Set `BRIDGETOWN_ENV` to `production` on the Heroku app with:
+
+```sh
+$ heroku config:set BRIDGETOWN_ENV=production
+```
+
+Bridgetown looks for `$BRIDGETOWN_PORT` to determine which port to bind to, but Heroku uses `$PORT`. I've changed that in `puma.rb` but the Bridgetown gem still looks for the former. The log output will print `4000` erroneously, but not until after Puma also prints the port its binding to (the correct one). One coule probably set `$BRIDGETOWN_PORT` to `$PORT`, but that seems kind of silly. Bonus points if Bridgetown adopts `$PORT` down the road. :)
+
+Once it's all configured, `git push heroku` and peel out. 
 
 ## Contributing
 
